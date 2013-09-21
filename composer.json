@@ -13,7 +13,7 @@
     ],
     "require": {
         "php": ">=5.3.3",
-        "codeplex/phpexcel": "dev-master"
+        "codeplex/phpexcel": ">=1.7.8"
     },
     "require-dev": {
         "symfony/symfony": "2.3.*"
