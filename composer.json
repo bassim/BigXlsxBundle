@@ -21,6 +21,6 @@
     "autoload": {
         "psr-0": { "Bassim\\BigXlsxBundle": "" }
     },
-    "target-dir": "Bassim/BigXlsxBundle",
+    "target-dir": "",
     "minimum-stability": "dev"
 }
