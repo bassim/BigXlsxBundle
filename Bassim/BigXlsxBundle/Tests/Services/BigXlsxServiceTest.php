@@ -15,7 +15,6 @@ class BigXlsxServiceTest extends \PHPUnit_Framework_TestCase
 
 		/** @var $service BigXlsxService */
 		$service = new BigXlsxService();//get('bassim_big_xlsx.service');
-		$service->create();
 
 		$data = array();
 		for ($i=0;$i<$this->_rowCount;$i++) {

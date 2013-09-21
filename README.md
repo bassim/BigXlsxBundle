@@ -15,7 +15,6 @@ Usage
 
 		/** @var $service BigXlsxService */
 		$service = $container->get('bassim_big_xlsx.service');
-		$service->create();
 
 		$data = array();
 		for ($i=0;$i<1;$i++) {

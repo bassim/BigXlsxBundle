@@ -12,7 +12,7 @@ namespace Bassim\BigXlsxBundle\Services;
 
 use Bassim\BigXlsxBundle\Entity\SharedStringXml;
 use Bassim\BigXlsxBundle\Entity\SheetXml;
-use Symfony\Bridge\Monolog\Logger;
+
 
 class BigXlsxService
 {
@@ -25,17 +25,10 @@ class BigXlsxService
 
 	public function __construct()
 	{
-
-	}
-
-
-	public function create()
-	{
 		$this->_columnName=null;
-
 		$this->_objPHPExcel = new \PHPExcel();
-
 	}
+
 
 	public function addSheet($sheetNumber, $name, $columns, $data)
 	{
