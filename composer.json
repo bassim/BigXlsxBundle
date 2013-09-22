@@ -2,7 +2,7 @@
     "name": "bassim/big-xlsx-bundle",
     "type": "symfony-bundle",
     "description": "Symfony2 Bundle for generating large multi-sheeted xlsx files with low memory usage",
-    "keywords": ["xlsx"],
+    "keywords": ["php", "xlsx",  "excel", "spreadsheet", "csv"],
     "homepage": "http://github.com/Bassim/BigXlsxBundle",
     "license": "MIT",
     "authors": [
