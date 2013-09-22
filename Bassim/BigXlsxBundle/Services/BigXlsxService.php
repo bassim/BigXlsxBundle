@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by JetBrains PhpStorm.
- * User: bassimons
- * Date: 9/19/13
- * Time: 11:19 AM
- * To change this template use File | Settings | File Templates.
- */
 
 namespace Bassim\BigXlsxBundle\Services;
 
