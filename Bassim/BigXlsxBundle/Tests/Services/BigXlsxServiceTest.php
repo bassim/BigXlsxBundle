@@ -16,25 +16,21 @@ class BigXlsxServiceTest extends \PHPUnit_Framework_TestCase
 		/** @var $service BigXlsxService */
 		$service = new BigXlsxService();//get('bassim_big_xlsx.service');
 
-		$data = array();
+		$data = array("id","name");
 		for ($i=0;$i<$this->_rowCount;$i++) {
 			$data[] = array("1_a_".$i, "1_b_".$i, "1_c_".$i);
 		}
 
-		$service->addSheet(0, "test Sheet_0", array("id","name"), $data);
-		$data = array();
+		$service->addSheet(0, "test Sheet_0", $data);
+		$data =  array("id2","name2");
 		for ($i=0;$i<$this->_rowCount;$i++) {
 			$data[] = array("2_a_".$i, "2_b_".$i);
 		}
 
-		$service->addSheet(1, "test Sheet_1", array("id2","name2"), $data);
+		$service->addSheet(1, "test Sheet_1", $data);
 		$file = $service->get();
 
 		//die(var_dump($file));
-
-
-
-
 		//todo check whether file is valid xlsx
 
 

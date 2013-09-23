@@ -16,12 +16,12 @@ Usage
 		/** @var $service BigXlsxService */
 		$service = $container->get('bassim_big_xlsx.service');
 
-		$data = array();
+		$data = array("id","name");
 		for ($i=0;$i<1;$i++) {
 			$data[] = array($i, "name_".$i);
 		}
 
-		$service->addSheet(0, "test Sheet_0", array("id","name"), $data);
+		$service->addSheet(0, "test Sheet_0", $data);
 		$file = $service->get();
 
   

@@ -23,7 +23,7 @@ class BigXlsxService
 	}
 
 
-	public function addSheet($sheetNumber, $name, $columns, $data)
+	public function addSheet($sheetNumber, $name, $data)
 	{
 		if ($sheetNumber>0) {
 			$this->_objPHPExcel->createSheet($sheetNumber);
@@ -32,7 +32,7 @@ class BigXlsxService
 		$this->_objPHPExcel->setActiveSheetIndex($sheetNumber);
 		$this->_objPHPExcel->getActiveSheet()->setTitle($name);
 
-		$this->_sheets[$sheetNumber] = array_merge(array($columns), $data);
+		$this->_sheets[$sheetNumber] = $data;
 	}
 
 	public function get()
