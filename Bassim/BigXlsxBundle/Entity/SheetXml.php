@@ -17,7 +17,7 @@ class SheetXml
 
 	public function __construct(SharedStringXml $sharedStringXml)
 	{
-		$this->_sheetFile = realpath(sys_get_temp_dir())."".uniqid("sheetXml");
+		$this->_sheetFile = realpath(sys_get_temp_dir())."/".uniqid("sheetXml");
 		$this->_fp = fopen($this->_sheetFile, 'w');
 		$this->_sharedStringXml = $sharedStringXml;
 	}

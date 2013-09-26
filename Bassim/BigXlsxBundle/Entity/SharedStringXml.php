@@ -14,7 +14,7 @@ class SharedStringXml
 
 	public function __construct()
 	{
-		$this->_sharedStringsFile = realpath(sys_get_temp_dir())."".uniqid("sharedStringXml");
+		$this->_sharedStringsFile = realpath(sys_get_temp_dir())."/".uniqid("sharedStringXml");
 		$this->_fp = fopen($this->_sharedStringsFile, 'w');
 	}
 

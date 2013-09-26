@@ -89,7 +89,7 @@ class BigXlsxService
 	{
 		// Save Excel 2007 file
 		$objWriter = new \PHPExcel_Writer_Excel2007($this->_objPHPExcel);
-		$filename = realpath(sys_get_temp_dir())."".uniqid("xlsx").".xlsx";
+		$filename = realpath(sys_get_temp_dir())."/".uniqid("xlsx").".xlsx";
 		$objWriter->save($filename);
 
 		$zipArchive = new \ZipArchive();
