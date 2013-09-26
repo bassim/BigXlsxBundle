@@ -32,6 +32,6 @@ Usage
 		}
 
 		$service->addSheet(0, "test Sheet_0", $data);
-		$file = $service->get();
+		$file = $service->getFile();
 
   

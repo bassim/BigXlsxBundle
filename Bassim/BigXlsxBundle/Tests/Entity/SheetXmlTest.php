@@ -23,7 +23,7 @@ class SheetXmlTest extends \PHPUnit_Framework_TestCase
 		$file = $sheetXml->getFile();
 		$xml=simplexml_load_file($file);
 
-		$this->assertEquals((string)$xml->sheetData->row[0]->c[0]->v, 0);
+		$this->assertEquals(0, (string)$xml->sheetData->row[0]->c[0]->v);
 
 
 	}

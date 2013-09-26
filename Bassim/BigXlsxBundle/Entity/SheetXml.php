@@ -17,7 +17,7 @@ class SheetXml
 
 	public function __construct(SharedStringXml $sharedStringXml)
 	{
-		$this->_sheetFile = "/tmp/".uniqid();
+		$this->_sheetFile = realpath(sys_get_temp_dir())."".uniqid("sheetXml");
 		$this->_fp = fopen($this->_sheetFile, 'w');
 		$this->_sharedStringXml = $sharedStringXml;
 	}
@@ -77,20 +77,10 @@ class SheetXml
 	{
 		$this->_lineCount++;
 		$this->_string .=$string;
-
-//		if ($this->_lineCount>4000) {
-//
-//			fwrite($this->_fp,$this->_string);
-//			$this->_string = null;
-//			$this->_lineCount = 0;
-//
-//		}
-
 	}
 
 	private function _flush()
 	{
-		//fwrite($this->_fp,implode('', $this->_string));
 		fwrite($this->_fp,$this->_string);
 		fclose($this->_fp);
 	}

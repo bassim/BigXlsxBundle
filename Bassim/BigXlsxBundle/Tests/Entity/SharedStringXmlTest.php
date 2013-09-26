@@ -18,6 +18,6 @@ class SharedStringXmlTest extends \PHPUnit_Framework_TestCase
 
 		$file = $sharedStringXml->getFile();
 		$xml=simplexml_load_file($file);
-		$this->assertEquals($xml->si[0]->t, "1");
+		$this->assertEquals("1", $xml->si[0]->t);
 	}
 }

@@ -11,10 +11,8 @@ class BenchmarkService
 {
 
 	/** @var $objPHPExcel \PHPExcel */
-	public $_objPHPExcel;
-	public $_columnName;
-	public $_logger;
-
+	private $_objPHPExcel;
+	private $_columnName;
 	private $_sheets = array();
 
 	public function __construct()
@@ -86,13 +84,5 @@ class BenchmarkService
 
 
 	}
-
-	private function _convert($size)
-	{
-		$unit=array('b','kb','mb','gb','tb','pb');
-		return @round($size/pow(1024,($i=floor(log($size,1024)))),2).' '.$unit[$i];
-	}
-
-
 
 }

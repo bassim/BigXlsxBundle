@@ -5,16 +5,16 @@ namespace Bassim\BigXlsxBundle\Entity;
 
 class SharedStringXml
 {
-	public $_string;
-	public $_lineCount;
-	public $_position = -1;
+	private $_string;
+	private $_lineCount;
+	private $_position = -1;
 	private $_strings = array();
 	private $_fp;
 	private $_sharedStringsFile;
 
 	public function __construct()
 	{
-		$this->_sharedStringsFile = "/tmp/".uniqid();
+		$this->_sharedStringsFile = realpath(sys_get_temp_dir())."".uniqid("sharedStringXml");
 		$this->_fp = fopen($this->_sharedStringsFile, 'w');
 	}
 
@@ -69,14 +69,6 @@ class SharedStringXml
 	{
 		$this->_lineCount++;
 		$this->_string .=$string;
-
-//		if ($this->_lineCount>4000) {
-//
-//			fwrite($this->_fp,$this->_string);
-//			$this->_string = null;
-//			$this->_lineCount = 0;
-//
-//		}
 
 	}
 
