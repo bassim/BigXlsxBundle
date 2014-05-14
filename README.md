@@ -45,14 +45,16 @@ Adding a custom sheet
 			$data[] = array($i, "name_".$i);
 		}
 
-		$service->addSheet(1, "test Sheet_1", $data);
+		$service->addSheet(0, "test Sheet_0", $data);
 
 		$objPHPExcel = $service->getPHPExcel();
 
 		//add custom sheet
-		$objPHPExcel->createSheet(2);
-		$objPHPExcel->setActiveSheetIndex(2);
+		$objPHPExcel->createSheet(1);
+		$objPHPExcel->setActiveSheetIndex(1);
 		$objPHPExcel->getActiveSheet()->setTitle("test");
+
+		// ....
 
 		$file = $service->getFile();
 
