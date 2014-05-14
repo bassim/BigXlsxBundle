@@ -83,17 +83,23 @@ class BigXlsxService
 	/**
 	 * Returns the path to the xlsx file
 	 *
+	 * @param null|string $filePath The optional Custom FilePath
+	 *
 	 * @return string
 	 */
-	public function getFile()
+	public function getFile($filePath=null)
 	{
 		// Save Excel 2007 file
 		$objWriter = new \PHPExcel_Writer_Excel2007($this->_objPHPExcel);
-		$filename = realpath(sys_get_temp_dir())."/".uniqid("xlsx").".xlsx";
-		$objWriter->save($filename);
+
+		if (is_null($filePath)) {
+			$filePath = realpath(sys_get_temp_dir())."/".uniqid("xlsx").".xlsx";
+		}
+
+		$objWriter->save($filePath);
 
 		$zipArchive = new \ZipArchive();
-		$zipArchive->open($filename);
+		$zipArchive->open($filePath);
 
 		$sharedStringXml = new SharedStringXml();
 		foreach ($this->_sheets as $key=>$sheet) {
@@ -106,7 +112,7 @@ class BigXlsxService
 
 		$zipArchive->addFile($sharedStringXml->getFile(), 'xl/sharedStrings.xml');
 		$zipArchive->close();
-		return $filename;
+		return $filePath;
 	}
 
 	/**

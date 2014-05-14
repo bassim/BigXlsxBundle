@@ -47,7 +47,8 @@ class BigXlsxServiceTest extends \PHPUnit_Framework_TestCase
 		}
 
 		$service->addSheet(0, "test Sheet_0", $data);
-		$data[] =  array("id2","name2");
+
+        $data[] =  array("id2","name2");
 		for ($i=0;$i<1;$i++) {
 			$data[] = array("2_a_".$i, "2_b_".$i);
 		}
