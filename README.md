@@ -20,8 +20,8 @@ add this to your AppKernel.php
 
 		new Bassim\BigXlsxBundle\BassimBigXlsxBundle(),
 
-Usage
------
+Basic Usage
+-----------
 
 		/** @var $service BigXlsxService */
 		$service = $container->get('bassim_big_xlsx.service');
@@ -32,6 +32,28 @@ Usage
 		}
 
 		$service->addSheet(0, "test Sheet_0", $data);
+		$file = $service->getFile();
+
+Adding a custom sheet
+---------------------
+
+       /** @var $service BigXlsxService */
+		$service = get('bassim_big_xlsx.service');
+
+		$data[] = array("id","name");
+		for ($i=0;$i<1;$i++) {
+			$data[] = array($i, "name_".$i);
+		}
+
+		$service->addSheet(1, "test Sheet_1", $data);
+
+		$objPHPExcel = $service->getPHPExcel();
+
+		//add custom sheet
+		$objPHPExcel->createSheet(2);
+		$objPHPExcel->setActiveSheetIndex(2);
+		$objPHPExcel->getActiveSheet()->setTitle("test");
+
 		$file = $service->getFile();
 
   

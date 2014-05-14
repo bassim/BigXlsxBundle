@@ -56,7 +56,7 @@ class BigXlsxServiceTest extends \PHPUnit_Framework_TestCase
 
 		$objPHPExcel = $service->getPHPExcel();
 
-		//add third custom sheet
+		//add custom sheet
 		$objPHPExcel->createSheet(2);
 		$objPHPExcel->setActiveSheetIndex(2);
 		$objPHPExcel->getActiveSheet()->setTitle("test");
