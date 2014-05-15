@@ -55,8 +55,8 @@ class SheetXml
 		$context = stream_context_create();
 		$fp = fopen($this->_sheetFile, 'r', 1, $context);
 		$tmpname = md5($string);
-		file_put_contents($tmpname, $string);
-		file_put_contents($tmpname, $fp, FILE_APPEND);
+		file_put_contents(realpath(sys_get_temp_dir())."/".$tmpname, $string);
+		file_put_contents(realpath(sys_get_temp_dir())."/".$tmpname, $fp, FILE_APPEND);
 		fclose($fp);
 		unlink($this->_sheetFile);
 		rename($tmpname, $this->_sheetFile);
