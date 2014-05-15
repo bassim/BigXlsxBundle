@@ -49,11 +49,11 @@ class SharedStringXml
 		$context = stream_context_create();
 		$fp = fopen($this->_sharedStringsFile, 'r', 1, $context);
 		$tmpname = md5($string);
-		file_put_contents($tmpname, $string);
-		file_put_contents($tmpname, $fp, FILE_APPEND);
+		file_put_contents(realpath(sys_get_temp_dir())."/".$tmpname, $string);
+		file_put_contents(realpath(sys_get_temp_dir())."/".$tmpname, $fp, FILE_APPEND);
 		fclose($fp);
 		unlink($this->_sharedStringsFile);
-		rename($tmpname, $this->_sharedStringsFile);
+		rename(realpath(sys_get_temp_dir())."/".$tmpname, $this->_sharedStringsFile);
 
 	}
 
