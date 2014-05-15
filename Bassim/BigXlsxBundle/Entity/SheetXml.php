@@ -59,7 +59,7 @@ class SheetXml
 		file_put_contents(realpath(sys_get_temp_dir())."/".$tmpname, $fp, FILE_APPEND);
 		fclose($fp);
 		unlink($this->_sheetFile);
-		rename($tmpname, $this->_sheetFile);
+		rename(realpath(sys_get_temp_dir())."/".$tmpname, $this->_sheetFile);
 
 	}
 
