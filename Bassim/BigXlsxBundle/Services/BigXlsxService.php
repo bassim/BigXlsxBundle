@@ -31,97 +31,90 @@ namespace Bassim\BigXlsxBundle\Services;
 use Bassim\BigXlsxBundle\Entity\SharedStringXml;
 use Bassim\BigXlsxBundle\Entity\SheetXml;
 
-/**
- * PHPExcel_Writer_Excel2007_WriterPart
- *
- * @category  BigXlsxBundle
- * @package   Services
- * @copyright 2013 Bas Simons (https://github.com/bassim)
- */
 class BigXlsxService
 {
 
-	/** @var $objPHPExcel \PHPExcel */
-	private $_objPHPExcel;
+    /** @var $objPHPExcel \PHPExcel */
+    private $objPHPExcel;
 
-	/**
-	 * @var array
-	 */
-	private $_sheets = array();
+    /**
+     * @var array
+     */
+    private $sheets = array();
 
-	/**
-	 * Constructor.
-	 *
-	 * Initiate _objPHPExcel
-	 */
-	public function __construct()
-	{
-		$this->_objPHPExcel = new \PHPExcel();
-	}
+    /**
+     * Constructor.
+     *
+     * Initiate _objPHPExcel
+     */
+    public function __construct()
+    {
+        $this->objPHPExcel = new \PHPExcel();
+    }
 
-	/**
-	 * Add a Sheet
-	 *
-	 * @param int    $sheetNumber The SheetNumber
-	 * @param string $sheetName   The SheetName
-	 * @param array  $sheetData   The SheetData
-	 *
-	 * @return void
-	 */
-	public function addSheet($sheetNumber, $sheetName, $sheetData)
-	{
-		if ($sheetNumber>0) {
-			$this->_objPHPExcel->createSheet($sheetNumber);
-		}
+    /**
+     * Add a Sheet
+     *
+     * @param int $sheetNumber The SheetNumber
+     * @param string $sheetName The SheetName
+     * @param array $sheetData The SheetData
+     *
+     * @return void
+     */
+    public function addSheet($sheetNumber, $sheetName, $sheetData)
+    {
+        if ($sheetNumber > 0) {
+            $this->objPHPExcel->createSheet($sheetNumber);
+        }
 
-		$this->_objPHPExcel->setActiveSheetIndex($sheetNumber);
-		$this->_objPHPExcel->getActiveSheet()->setTitle($sheetName);
+        $this->objPHPExcel->setActiveSheetIndex($sheetNumber);
+        $this->objPHPExcel->getActiveSheet()->setTitle($sheetName);
 
-		$this->_sheets[$sheetNumber] = $sheetData;
-	}
+        $this->sheets[$sheetNumber] = $sheetData;
+    }
 
-	/**
-	 * Returns the path to the xlsx file
-	 *
-	 * @param null|string $filePath The optional Custom FilePath
-	 *
-	 * @return string
-	 */
-	public function getFile($filePath=null)
-	{
-		// Save Excel 2007 file
-		$objWriter = new \PHPExcel_Writer_Excel2007($this->_objPHPExcel);
+    /**
+     * Returns the path to the xlsx file
+     *
+     * @param null|string $filePath The optional Custom FilePath
+     *
+     * @return string
+     */
+    public function getFile($filePath = null)
+    {
+        // Save Excel 2007 file
+        $objWriter = new \PHPExcel_Writer_Excel2007($this->objPHPExcel);
 
-		if (is_null($filePath)) {
-			$filePath = realpath(sys_get_temp_dir())."/".uniqid("xlsx").".xlsx";
-		}
+        if (is_null($filePath)) {
+            $filePath = realpath(sys_get_temp_dir()) . "/" . uniqid("xlsx") . ".xlsx";
+        }
 
-		$objWriter->save($filePath);
+        $objWriter->save($filePath);
 
-		$zipArchive = new \ZipArchive();
-		$zipArchive->open($filePath);
+        $zipArchive = new \ZipArchive();
+        $zipArchive->open($filePath);
 
-		$sharedStringXml = new SharedStringXml();
-		foreach ($this->_sheets as $key=>$sheet) {
-			$sheetXml = new SheetXml($sharedStringXml);
-			foreach ($sheet as $row) {
-				$sheetXml->addRow($row);
-			}
-			$zipArchive->addFile($sheetXml->getFile(), 'xl/worksheets/sheet'.($key+1).'.xml');
-		}
+        $sharedStringXml = new SharedStringXml();
+        foreach ($this->sheets as $key => $sheet) {
+            $sheetXml = new SheetXml($sharedStringXml);
+            foreach ($sheet as $row) {
+                $sheetXml->addRow($row);
+            }
+            $zipArchive->addFile($sheetXml->getFile(), 'xl/worksheets/sheet' . ($key + 1) . '.xml');
+        }
 
-		$zipArchive->addFile($sharedStringXml->getFile(), 'xl/sharedStrings.xml');
-		$zipArchive->close();
-		return $filePath;
-	}
+        $zipArchive->addFile($sharedStringXml->getFile(), 'xl/sharedStrings.xml');
+        $zipArchive->close();
+        return $filePath;
+    }
 
-	/**
-	 * Returns the PHPExcel instance
-	 *
-	 * @return \PHPExcel
-	 */
-	public function getPHPExcel()
-	{
-		return $this->_objPHPExcel;
-	}
+    /**
+     * Returns the PHPExcel instance
+     *
+     * @return \PHPExcel
+     */
+    public function getPHPExcel()
+    {
+        return $this->objPHPExcel;
+    }
 }

@@ -1,6 +1,7 @@
 parameters:
-    bassim_big_xlsx.service.class: Bassim\BigXlsxBundle\Services\BigXlsxService
+    bassim_big_xlsx.service.class:           Bassim\BigXlsxBundle\Services\BigXlsxService
     bassim_big_xlsx.benchmark.service.class: Bassim\BigXlsxBundle\Services\BenchmarkService
+
 services:
     bassim_big_xlsx.service:
         class: %bassim_big_xlsx.service.class%
