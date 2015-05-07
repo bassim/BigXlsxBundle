@@ -23,6 +23,7 @@ class SharedStringXml
         if ($pos === false) {
             $this->position++;
             $this->strings[] = $string;
+            $string = str_replace("&", "&amp;", $string);
 
             $this->write("<si><t>" . $string . "</t></si>");
             return $this->position;
